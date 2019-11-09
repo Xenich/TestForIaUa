@@ -12,3 +12,13 @@ D:\Projects\GoogleDrive\Programming\C#\TestForIaUa\TestForIaUa\obj\Debug\TestFor
 D:\Projects\GoogleDrive\Programming\C#\TestForIaUa\TestForIaUa\obj\Debug\TestForIaUa.csproj.GenerateResource.Cache
 D:\Projects\GoogleDrive\Programming\C#\TestForIaUa\TestForIaUa\obj\Debug\TestForIaUa.exe
 D:\Projects\GoogleDrive\Programming\C#\TestForIaUa\TestForIaUa\obj\Debug\TestForIaUa.pdb
+D:\Projects\GoogleDrive\Programming\C#\TestForIaUa\TestForIaUa\bin\Debug\EntityFramework.dll
+D:\Projects\GoogleDrive\Programming\C#\TestForIaUa\TestForIaUa\bin\Debug\EntityFramework.SqlServer.dll
+D:\Projects\GoogleDrive\Programming\C#\TestForIaUa\TestForIaUa\bin\Debug\EntityFramework.xml
+D:\Projects\GoogleDrive\Programming\C#\TestForIaUa\TestForIaUa\bin\Debug\EntityFramework.SqlServer.xml
+D:\Projects\GoogleDrive\Programming\C#\TestForIaUa\TestForIaUa\obj\Debug\AddManufacturerToDBWindow.g.cs
+D:\Projects\GoogleDrive\Programming\C#\TestForIaUa\TestForIaUa\obj\Debug\AddManufacturerToDBWindow.baml
+D:\Projects\GoogleDrive\Programming\C#\TestForIaUa\TestForIaUa\obj\Debug\AddTypeToDBWindow.g.cs
+D:\Projects\GoogleDrive\Programming\C#\TestForIaUa\TestForIaUa\obj\Debug\AddTypeToDBWindow.baml
+D:\Projects\GoogleDrive\Programming\C#\TestForIaUa\TestForIaUa\obj\Debug\AddModelWindow.g.cs
+D:\Projects\GoogleDrive\Programming\C#\TestForIaUa\TestForIaUa\obj\Debug\AddModelWindow.baml

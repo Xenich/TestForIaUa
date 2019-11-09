@@ -47,12 +47,22 @@ namespace TestForIaUa
 
         private void buttonAddType_Click(object sender, RoutedEventArgs e)
         {
-
+            (new AddTypeToDBWindow()).Show();
         }
 
         private void filterButton_Click(object sender, RoutedEventArgs e)
         {
 
+        }
+
+        private void buttonAddManufacturer_Click(object sender, RoutedEventArgs e)
+        {
+            (new AddManufacturerToDBWindow()).Show();
+        }
+
+        private void buttonAddModel_Click(object sender, RoutedEventArgs e)
+        {
+            (new AddModelWindow()).Show();
         }
     }
 }

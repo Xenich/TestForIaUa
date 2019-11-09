@@ -36,15 +36,27 @@
                     </Button.Content>
                 </Button>
 
-                <Button Height="Auto" Name="buttonReport" Width="auto" Margin="1" Padding="4" Click="buttonReport_Click" Foreground="Black" BorderBrush="Black" Background="#0A000000">
-                    <Button.Content>
-                        <TextBlock Text="Сформировать отчёт по поломкам" TextWrapping="Wrap" TextAlignment="Center" FontSize="14" FontWeight="Normal" />
-                    </Button.Content>
-                </Button>
-
                 <Button Height="Auto" Name="buttonAddType" Width="auto" Margin="1" Padding="4" Click="buttonAddType_Click" Foreground="Black" BorderBrush="Black" Background="#0A000000">
                     <Button.Content>
                         <TextBlock Text="Добавить тип оборудования" TextWrapping="Wrap" TextAlignment="Center" FontSize="14" FontWeight="Normal" />
+                    </Button.Content>
+                </Button>
+
+                <Button Height="Auto" Name="buttonAddManufacturer" Width="auto" Margin="1" Padding="4" Click="buttonAddManufacturer_Click" Foreground="Black" BorderBrush="Black" Background="#0A000000">
+                    <Button.Content>
+                        <TextBlock Text="Добавить производителя" TextWrapping="Wrap" TextAlignment="Center" FontSize="14" FontWeight="Normal" />
+                    </Button.Content>
+                </Button>
+
+                <Button Height="Auto" Name="buttonAddModel" Width="auto" Margin="1" Padding="4" Click="buttonAddModel_Click" Foreground="Black" BorderBrush="Black" Background="#0A000000">
+                    <Button.Content>
+                        <TextBlock Text="Добавить модель" TextWrapping="Wrap" TextAlignment="Center" FontSize="14" FontWeight="Normal" />
+                    </Button.Content>
+                </Button>
+
+                <Button Height="Auto" Name="buttonReport" Width="auto" Margin="1" Padding="4" Click="buttonReport_Click" Foreground="Black" BorderBrush="Black" Background="#0A000000">
+                    <Button.Content>
+                        <TextBlock Text="Сформировать отчёт по поломкам" TextWrapping="Wrap" TextAlignment="Center" FontSize="14" FontWeight="Normal" />
                     </Button.Content>
                 </Button>
             </StackPanel>
@@ -63,11 +75,12 @@
                     </Button>
                 </StackPanel>
 
-                <DataGrid  Grid.Row="1" AutoGenerateColumns="False" Name="mainDataGrid">
+                <DataGrid  Grid.Row="1" SelectionMode ="Extended"  AutoGenerateColumns="False" Name="mainDataGrid">
                     <DataGrid.Columns>
-                        <DataGridTextColumn Binding="{Binding Title}" Header="Тип оборудования" Width="*"/>
-                        <DataGridTextColumn Binding="{Binding Company}" Header="Производитель" Width="*"/>
-                        <DataGridTextColumn Binding="{Binding Price}" Header="Модель" Width="*"/>
+                        <DataGridTextColumn Binding="{Binding ID}" Header="Инв. номер" Width="*"/>
+                        <DataGridTextColumn Binding="{Binding Type}" Header="Тип оборудования" Width="*"/>
+                        <DataGridTextColumn Binding="{Binding Manufacturer}" Header="Производитель" Width="*"/>
+                        <DataGridTextColumn Binding="{Binding Model}" Header="Модель" Width="*"/>
                     </DataGrid.Columns>
                 </DataGrid>
 

@@ -1,0 +1,16 @@
+﻿<Window x:Class="TestForIaUa.AddManufacturerToDBWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:TestForIaUa"
+        mc:Ignorable="d"
+        Title="AddManufacturerToDBWindow" Height="300" Width="300">
+    <Grid>
+        <StackPanel  Name="mainStackPanel" >
+            <Label x:Name="label" Content="Введите название производителя"/>
+            <TextBox x:Name="textBoxName" Height="24" TextWrapping="Wrap" Text=""/>
+            <Button x:Name="buttonAdd" Content="Добавить производителя в базу данных" Click="buttonAdd_Click"/>
+        </StackPanel>
+    </Grid>
+</Window>

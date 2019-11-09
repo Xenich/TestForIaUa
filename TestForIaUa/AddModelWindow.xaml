@@ -1,0 +1,25 @@
+﻿<Window x:Class="TestForIaUa.AddModelWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:TestForIaUa"
+        mc:Ignorable="d"
+        Title="Добавление модели" Height="300" Width="300">
+    <Grid>
+        <Grid>
+            <StackPanel  Name="mainStackPanel" >
+                <Label Name="labelManuf" Content="Выберите производителя"/>
+                <ComboBox Name="ComboBoxManuf"/>
+                <Border Height="5" Background="Black"/>
+                <Label Name="labelType" Content="Выберите тип оборудования"/>
+                <ComboBox Name="ComboBoType"/>
+                <Border Height="5" Background="Black"/>
+                <Label Name="label" Content="Введите название типа оборудования"/>
+                <TextBox Name="textBoxName" Height="24" TextWrapping="Wrap" Text=""/>
+                <Border Height="5" Background="Black"/>
+                <Button Name="buttonAdd" Content="Добавить новую модель в базу данных" Click="buttonAdd_Click"/>
+            </StackPanel>
+        </Grid>
+    </Grid>
+</Window>
