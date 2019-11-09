@@ -54,6 +54,12 @@
                     </Button.Content>
                 </Button>
 
+                <Button Height="Auto" Name="buttonAddRepair" Width="auto" Margin="1" Padding="4" Click="buttonRepair_Click" Foreground="Black" BorderBrush="Black" Background="#0A000000">
+                    <Button.Content>
+                        <TextBlock Text="Добавить ремонт" TextWrapping="Wrap" TextAlignment="Center" FontSize="14" FontWeight="Normal" />
+                    </Button.Content>
+                </Button>
+                
                 <Button Height="Auto" Name="buttonReport" Width="auto" Margin="1" Padding="4" Click="buttonReport_Click" Foreground="Black" BorderBrush="Black" Background="#0A000000">
                     <Button.Content>
                         <TextBlock Text="Сформировать отчёт по поломкам" TextWrapping="Wrap" TextAlignment="Center" FontSize="14" FontWeight="Normal" />
@@ -75,12 +81,13 @@
                     </Button>
                 </StackPanel>
 
-                <DataGrid  Grid.Row="1" SelectionMode ="Extended"  AutoGenerateColumns="False" Name="mainDataGrid">
+                <DataGrid  Grid.Row="1" SelectionMode ="Extended"  AutoGenerateColumns="False" Name="mainDataGrid" IsReadOnly="True">
                     <DataGrid.Columns>
-                        <DataGridTextColumn Binding="{Binding ID}" Header="Инв. номер" Width="*"/>
-                        <DataGridTextColumn Binding="{Binding Type}" Header="Тип оборудования" Width="*"/>
-                        <DataGridTextColumn Binding="{Binding Manufacturer}" Header="Производитель" Width="*"/>
-                        <DataGridTextColumn Binding="{Binding Model}" Header="Модель" Width="*"/>
+                        <DataGridTextColumn Binding="{Binding id}" Header="Номер" Width="auto"/>
+                        <DataGridTextColumn Binding="{Binding TypeName}" Header="Тип оборудования" Width="*"/>
+                        <DataGridTextColumn Binding="{Binding ManName}" Header="Производитель" Width="*"/>
+                        <DataGridTextColumn Binding="{Binding ModelName}" Header="Модель" Width="*"/>
+                        <DataGridTextColumn Binding="{Binding Description}" Header="Описание" Width="*"/>
                     </DataGrid.Columns>
                 </DataGrid>
 

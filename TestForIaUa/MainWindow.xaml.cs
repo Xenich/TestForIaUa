@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using System.Data.Entity;
 
 namespace TestForIaUa
 {
@@ -20,9 +21,24 @@ namespace TestForIaUa
     /// </summary>
     public partial class MainWindow : Window
     {
+
         public MainWindow()
         {
             InitializeComponent();
+            using (OfficeContext db = new OfficeContext())
+            {
+                string query =  "Select Equipments.Id, mm.ModelName, mm.TypeName, mm.ManName, Equipments.Description FROM Equipments INNER JOIN "+
+                                "(Select Models.Id as [ModelID], Models.Name as [ModelName], Manufacturers.Id as [ManID], Manufacturers.Name as [ManName], Types.Id as [TypeID], Types.Name as [TypeName] "+
+                                "FROM Models, Manufacturers, Types "+
+                                "WHERE Models.Manufacturer_Id = Manufacturers.Id AND Models.Type_Id = Types.Id) as [mm] "+
+                                "ON Equipments.Model_Id = mm.ModelID";
+
+                DataGridClass[] res = db.Database.SqlQuery<DataGridClass>(query).ToArray();
+                foreach (DataGridClass obj in res)
+                {
+                    mainDataGrid.Items.Add(obj);
+                }
+            }
         }
 
         private void NewDataBase_Click(object sender, RoutedEventArgs e)
@@ -37,7 +53,7 @@ namespace TestForIaUa
 
         private void buttonAdd_Click(object sender, RoutedEventArgs e)
         {
-
+            (new AddEquipmentWindow()).ShowDialog();
         }
 
         private void buttonReport_Click(object sender, RoutedEventArgs e)
@@ -47,7 +63,7 @@ namespace TestForIaUa
 
         private void buttonAddType_Click(object sender, RoutedEventArgs e)
         {
-            (new AddTypeToDBWindow()).Show();
+            (new AddTypeToDBWindow()).ShowDialog();
         }
 
         private void filterButton_Click(object sender, RoutedEventArgs e)
@@ -57,12 +73,26 @@ namespace TestForIaUa
 
         private void buttonAddManufacturer_Click(object sender, RoutedEventArgs e)
         {
-            (new AddManufacturerToDBWindow()).Show();
+            (new AddManufacturerToDBWindow()).ShowDialog();
         }
 
         private void buttonAddModel_Click(object sender, RoutedEventArgs e)
         {
-            (new AddModelWindow()).Show();
+            (new AddModelWindow()).ShowDialog();
         }
+
+        private void buttonRepair_Click(object sender, RoutedEventArgs e)
+        {
+            new RepairWindow().ShowDialog();
+        }
+    }
+
+    class DataGridClass
+    {
+        public int id { get; set; }
+        public string ModelName { get; set; }
+        public string TypeName { get; set; }
+        public string ManName { get; set; }
+        public string Description { get; set; }
     }
 }

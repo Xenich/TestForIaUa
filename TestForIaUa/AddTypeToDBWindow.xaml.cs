@@ -26,6 +26,11 @@ namespace TestForIaUa
 
         private void buttonAdd_Click(object sender, RoutedEventArgs e)
         {
+            if (textBoxName.Text == "")
+            {
+                MessageBox.Show("Введите наименование типа оборудования");
+                return;
+            }
             using (OfficeContext db = new OfficeContext())
             {
                 Type m = new Type() { Name = textBoxName.Text };

@@ -22,3 +22,7 @@ D:\Projects\GoogleDrive\Programming\C#\TestForIaUa\TestForIaUa\obj\Debug\AddType
 D:\Projects\GoogleDrive\Programming\C#\TestForIaUa\TestForIaUa\obj\Debug\AddTypeToDBWindow.baml
 D:\Projects\GoogleDrive\Programming\C#\TestForIaUa\TestForIaUa\obj\Debug\AddModelWindow.g.cs
 D:\Projects\GoogleDrive\Programming\C#\TestForIaUa\TestForIaUa\obj\Debug\AddModelWindow.baml
+D:\Projects\GoogleDrive\Programming\C#\TestForIaUa\TestForIaUa\obj\Debug\AddEquipmentWindow.g.cs
+D:\Projects\GoogleDrive\Programming\C#\TestForIaUa\TestForIaUa\obj\Debug\AddEquipmentWindow.baml
+D:\Projects\GoogleDrive\Programming\C#\TestForIaUa\TestForIaUa\obj\Debug\AddRepairWindow.g.cs
+D:\Projects\GoogleDrive\Programming\C#\TestForIaUa\TestForIaUa\obj\Debug\AddRepairWindow.baml

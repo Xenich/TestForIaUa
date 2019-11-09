@@ -1,6 +1,7 @@
 ﻿
 using System.Data.Entity;
 
+
 namespace TestForIaUa
 {
     class OfficeContext : DbContext
@@ -12,6 +13,6 @@ namespace TestForIaUa
         public DbSet<Manufacturer> Manufacturers { get; set; }
         public DbSet<Type> Types { get; set; }
         public DbSet<Model> Models { get; set; }
-
+        public DbSet<Repair> Repairs { get; set; }
     }
 }

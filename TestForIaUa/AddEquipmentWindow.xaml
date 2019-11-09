@@ -1,0 +1,20 @@
+﻿<Window x:Class="TestForIaUa.AddEquipmentWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:TestForIaUa"
+        mc:Ignorable="d"
+        Title="Добавление оборудования" Height="300" Width="300">
+    <Grid>
+        <StackPanel  x:Name="mainStackPanel" >
+            <Label x:Name="labelModel" Content="Выберите модель"/>
+            <ComboBox x:Name="ComboBoxModel"  DisplayMemberPath="Name" />
+            <Border Height="5" Background="Black"/>
+            <Label x:Name="label" Content="Введите описание оборудования"/>
+            <TextBox x:Name="textBoxDescription" Height="24" TextWrapping="Wrap" Text=""/>
+            <Border Height="5" Background="Black"/>
+            <Button x:Name="buttonAdd" Content="Добавить новое оборудование в базу данных" Click="buttonAdd_Click" />
+        </StackPanel>
+    </Grid>
+</Window>

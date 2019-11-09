@@ -23,21 +23,68 @@ namespace TestForIaUa
         {
             InitializeComponent();
             ComboBoxManuf.ItemsSource = GetManufacturers();
+            ComboBoxType.ItemsSource = GetTypes();
         }
 
         private Manufacturer[] GetManufacturers()
         {
             using (OfficeContext db = new OfficeContext())
             {
+                return db.Manufacturers.ToArray();
+            }
+        }
 
-                Manufacturer[] manufacturers = db.Manufacturers.ToArray();
-                return manufacturers;
+        private Type[] GetTypes()
+        {
+            using (OfficeContext db = new OfficeContext())
+            {
+                return db.Types.ToArray();
             }
         }
 
         private void buttonAdd_Click(object sender, RoutedEventArgs e)
         {
+            if (ComboBoxManuf.SelectedIndex == -1)
+            {
+                MessageBox.Show("Выберите производителя из списка");
+                return;
+            }
+            if (ComboBoxType.SelectedIndex == -1)
+            {
+                MessageBox.Show("Выберите тип оборудования из списка");
+                return;
+            }
 
+            if (textBoxName.Text == "")
+            {
+                MessageBox.Show("Введите название типа оборудования");
+                return;
+            }
+
+            using (OfficeContext db = new OfficeContext())
+            {
+                Model m = new Model();
+                m.Name = textBoxName.Text;
+                //m.ManufacturerId = (int)(ComboBoxManuf.SelectedValue);        SelectedValuePath="Id"
+                //m.TypeId = (int)(ComboBoxType.SelectedValue);                 SelectedValuePath="Id"
+                Manufacturer manuf = (Manufacturer)ComboBoxManuf.SelectedValue;
+                Type typ = (Type)ComboBoxType.SelectedValue;
+                db.Manufacturers.Attach(manuf);
+                db.Types.Attach(typ);
+                m.Manufacturer = manuf;
+                m.Type = typ;
+                
+
+                db.Models.Add(m);
+                db.SaveChanges();
+                MessageBox.Show("Модель добавлена");
+            }
+        }
+
+        private void ComboBoxManuf_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            
+           // int id = (int)this.ComboBoxManuf.SelectedValue;          
         }
     }
 }
