@@ -14,14 +14,17 @@ using System.Windows.Shapes;
 
 namespace TestForIaUa
 {
+
     /// <summary>
     /// Interaction logic for AddEquipmentWindow.xaml
     /// </summary>
     public partial class AddEquipmentWindow : Window
     {
+        public event AddEquipmentDeleg EquipmentAddedEvent;         // событие - добавление нового оборудования
         public AddEquipmentWindow()
         {
             InitializeComponent();
+                // заполняем комбобокс с моделями
             Dictionary<Model, string> comboSource;
             using (OfficeContext db = new OfficeContext())
             {
@@ -42,14 +45,6 @@ namespace TestForIaUa
             ComboBoxModel.ItemsSource = comboSource;
         }
 
-        private Model[] GetModels()
-        {
-            using (OfficeContext db = new OfficeContext())
-            {
-                return db.Models.ToArray();
-            }
-        }
-
         private void buttonAdd_Click(object sender, RoutedEventArgs e)
         {
             if (ComboBoxModel.SelectedIndex == -1)
@@ -57,18 +52,19 @@ namespace TestForIaUa
                 MessageBox.Show("Выберите модель из списка");
                 return;
             }
-
             using (OfficeContext db = new OfficeContext())
             {
-                Equipment eq = new Equipment();
-                eq.Description = textBoxDescription.Text;
+                Equipment equipment = new Equipment();
+                equipment.Description = textBoxDescription.Text;
                 Model model = (Model)ComboBoxModel.SelectedValue;
                
                 db.Models.Attach(model);
-                eq.Model = model;
-                db.Equipments.Add(eq);
+                equipment.Model = model;
+                Equipment equip = db.Equipments.Add(equipment);
                 db.SaveChanges();
                 MessageBox.Show("Оборудование добавлено");
+                if(EquipmentAddedEvent!=null)
+                    EquipmentAddedEvent(equip);
             }
         }
     }

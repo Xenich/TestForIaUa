@@ -22,24 +22,8 @@ namespace TestForIaUa
         public AddModelWindow()
         {
             InitializeComponent();
-            ComboBoxManuf.ItemsSource = GetManufacturers();
-            ComboBoxType.ItemsSource = GetTypes();
-        }
-
-        private Manufacturer[] GetManufacturers()
-        {
-            using (OfficeContext db = new OfficeContext())
-            {
-                return db.Manufacturers.ToArray();
-            }
-        }
-
-        private Type[] GetTypes()
-        {
-            using (OfficeContext db = new OfficeContext())
-            {
-                return db.Types.ToArray();
-            }
+            Helper.SetTypesToComboBox(ComboBoxType);
+            Helper.SetManufacturersToComboBox(ComboBoxManuf);
         }
 
         private void buttonAdd_Click(object sender, RoutedEventArgs e)
@@ -74,7 +58,6 @@ namespace TestForIaUa
                 m.Manufacturer = manuf;
                 m.Type = typ;
                 
-
                 db.Models.Add(m);
                 db.SaveChanges();
                 MessageBox.Show("Модель добавлена");

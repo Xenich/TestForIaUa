@@ -1,0 +1,17 @@
+﻿<Window x:Class="TestForIaUa.FilterByTypeWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:TestForIaUa"
+        mc:Ignorable="d"
+        Title="FilterByTypeWindow" Height="140.625" Width="300">
+    <Grid>
+        <StackPanel  x:Name="mainStackPanel" >
+            <Label x:Name="labelModel" Content="Выберите тип оборудования"/>
+            <ComboBox x:Name="ComboBoxType"  DisplayMemberPath="Name" />
+
+            <Button x:Name="buttonAdjust" Content="Прменить фильтр" Click="buttonAdjust_Click" />
+        </StackPanel>
+    </Grid>
+</Window>

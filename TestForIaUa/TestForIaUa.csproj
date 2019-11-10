@@ -76,7 +76,15 @@
     <Compile Include="AddTypeToDBWindow.xaml.cs">
       <DependentUpon>AddTypeToDBWindow.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Delegates.cs" />
     <Compile Include="entyties.cs" />
+    <Compile Include="FilterByManufacturerWindow.xaml.cs">
+      <DependentUpon>FilterByManufacturerWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="FilterByTypeWindow.xaml.cs">
+      <DependentUpon>FilterByTypeWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Helper.cs" />
     <Compile Include="OfficeContext.cs" />
     <Compile Include="AddRepairWindow.xaml.cs">
       <DependentUpon>AddRepairWindow.xaml</DependentUpon>
@@ -94,6 +102,14 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="AddTypeToDBWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="FilterByManufacturerWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="FilterByTypeWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

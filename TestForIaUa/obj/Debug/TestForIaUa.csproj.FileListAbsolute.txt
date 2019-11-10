@@ -26,3 +26,7 @@ D:\Projects\GoogleDrive\Programming\C#\TestForIaUa\TestForIaUa\obj\Debug\AddEqui
 D:\Projects\GoogleDrive\Programming\C#\TestForIaUa\TestForIaUa\obj\Debug\AddEquipmentWindow.baml
 D:\Projects\GoogleDrive\Programming\C#\TestForIaUa\TestForIaUa\obj\Debug\AddRepairWindow.g.cs
 D:\Projects\GoogleDrive\Programming\C#\TestForIaUa\TestForIaUa\obj\Debug\AddRepairWindow.baml
+D:\Projects\GoogleDrive\Programming\C#\TestForIaUa\TestForIaUa\obj\Debug\FilterByTypeWindow.g.cs
+D:\Projects\GoogleDrive\Programming\C#\TestForIaUa\TestForIaUa\obj\Debug\FilterByTypeWindow.baml
+D:\Projects\GoogleDrive\Programming\C#\TestForIaUa\TestForIaUa\obj\Debug\FilterByManufacturerWindow.g.cs
+D:\Projects\GoogleDrive\Programming\C#\TestForIaUa\TestForIaUa\obj\Debug\FilterByManufacturerWindow.baml
