@@ -34,6 +34,14 @@ namespace TestForIaUa
             }
             using (OfficeContext db = new OfficeContext())
             {
+                string query = "Select Id From Manufacturers Where Name = '" + textBoxName.Text+"'";
+                int[] res = db.Database.SqlQuery<int>(query).ToArray();
+                if (res.Length > 0)
+                {
+                    MessageBox.Show("Такой производитель уже есть");
+                    return;
+                }
+
                 Manufacturer m = new Manufacturer() { Name = textBoxName.Text };
                 db.Manufacturers.Add(m);
                 db.SaveChanges();

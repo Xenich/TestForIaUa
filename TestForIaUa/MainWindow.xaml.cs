@@ -13,8 +13,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using System.Data.Entity;
-using CsvHelper;
-using System.IO;
+
 namespace TestForIaUa
 {
     /// <summary>
@@ -22,7 +21,7 @@ namespace TestForIaUa
     /// </summary>
     public partial class MainWindow : Window
     {
-        // ВСЁ ЭТО НУЖНО БУДЕТ ВЫНЕСТИ В КОНТРОЛЛЕР       
+        // ВСЁ ЭТО ВЫНЕСТИ В КОНТРОЛЛЕР       
         Dictionary<int, DataGridClass> dic = new Dictionary<int, DataGridClass>();        // словарь: id - DataGridClass для отображения в датагриде
         AddEquipmentDeleg addEquipmentDeleg;
         AddManufacturerDeleg addManufacturerDeleg;
@@ -107,15 +106,7 @@ namespace TestForIaUa
         {
             Helper.SetManufacturersToComboBox(ComboBoxManuf);
         }
-            // формирование отчёта по поломкам
-        private void buttonReport_Click(object sender, RoutedEventArgs e)
-        {
-            using (var writer = new StreamWriter("Отчёт о ремонтах.csv"))
-            using (var csv = new CsvWriter(writer))
-            {
-      //          csv.WriteRecords();
-            }
-        }
+
             // добавление новой модели
         private void buttonAddModel_Click(object sender, RoutedEventArgs e)
         {
@@ -126,6 +117,12 @@ namespace TestForIaUa
         {
             new RepairWindow().ShowDialog();
         }
+            // формирование отчёта по поломкам
+        private void buttonReport_Click(object sender, RoutedEventArgs e)
+        {
+            (new ReportByDateWindow()).ShowDialog();
+        }
+
             // удаление оборудования
         private void mainDataGrid_KeyUp(object sender, KeyEventArgs e)
         {
@@ -216,7 +213,7 @@ namespace TestForIaUa
                 ERW.EquipmentRedactedEvent -= equipmentRedactedDeleg;
             }
         }
-            // событие редактирования оборудования - обновляем грид
+            // событие редактирования оборудования (после даблклика)- обновляем грид
         private void EquipmentRedactedEventHandler()
         {
             FillMainDataGrid();
@@ -248,14 +245,7 @@ namespace TestForIaUa
 
 
 /* СВАЛКА
- 
-
-
-
-
-
-
-        // фильтр по типу
+         // фильтр по типу
         private void filterTypeButton_Click(object sender, RoutedEventArgs e)
         {
             FilterByTypeWindow FBTW = new FilterByTypeWindow();
@@ -311,9 +301,5 @@ namespace TestForIaUa
                 mainDataGrid.Items.Refresh();
             }
         }
-
-
-
-
  
  * */

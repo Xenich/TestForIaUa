@@ -33,8 +33,18 @@ namespace TestForIaUa
                 MessageBox.Show("Введите наименование типа оборудования");
                 return;
             }
+
+
             using (OfficeContext db = new OfficeContext())
             {
+                string query = "Select Id From Types Where Name = '" + textBoxName.Text + "'";
+                int[] res = db.Database.SqlQuery<int>(query).ToArray();
+                if (res.Length > 0)
+                {
+                    MessageBox.Show("Такой тип уже есть");
+                    return;
+                }
+
                 Type t = new Type() { Name = textBoxName.Text };
                 db.Types.Add(t);
                 db.SaveChanges();

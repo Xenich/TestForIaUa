@@ -36,7 +36,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="CsvHelper">
-      <HintPath>..\..\Parsers\matahari_parser\packages\CsvHelper.12.2.0\lib\net47\CsvHelper.dll</HintPath>
+      <HintPath>..\..\Parsers\matahari_parser\packages\CsvHelper.12.2.0\lib\net45\CsvHelper.dll</HintPath>
     </Reference>
     <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
       <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.dll</HintPath>
@@ -84,16 +84,13 @@
     <Compile Include="EquipmentRedactorWindow.xaml.cs">
       <DependentUpon>EquipmentRedactorWindow.xaml</DependentUpon>
     </Compile>
-    <Compile Include="FilterByManufacturerWindow.xaml.cs">
-      <DependentUpon>FilterByManufacturerWindow.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="FilterByTypeWindow.xaml.cs">
-      <DependentUpon>FilterByTypeWindow.xaml</DependentUpon>
-    </Compile>
     <Compile Include="Helper.cs" />
     <Compile Include="OfficeContext.cs" />
     <Compile Include="AddRepairWindow.xaml.cs">
       <DependentUpon>AddRepairWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ReportByDateWindow.xaml.cs">
+      <DependentUpon>ReportByDateWindow.xaml</DependentUpon>
     </Compile>
     <Page Include="AddEquipmentWindow.xaml">
       <SubType>Designer</SubType>
@@ -115,14 +112,6 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="FilterByManufacturerWindow.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="FilterByTypeWindow.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -136,6 +125,10 @@
       <SubType>Code</SubType>
     </Compile>
     <Page Include="AddRepairWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="ReportByDateWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

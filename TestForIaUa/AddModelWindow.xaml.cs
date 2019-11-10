@@ -41,7 +41,7 @@ namespace TestForIaUa
 
             if (textBoxName.Text == "")
             {
-                MessageBox.Show("Введите название типа оборудования");
+                MessageBox.Show("Введите название модели");
                 return;
             }
 

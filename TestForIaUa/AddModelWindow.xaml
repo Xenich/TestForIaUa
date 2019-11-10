@@ -16,7 +16,7 @@
             <Label x:Name="labelType" Content="Выберите тип оборудования"/>
             <ComboBox x:Name="ComboBoxType"  DisplayMemberPath="Name" />
             <Border Height="5" Background="Black"/>
-            <Label x:Name="label" Content="Введите название типа оборудования"/>
+            <Label x:Name="label" Content="Введите название модели"/>
             <TextBox x:Name="textBoxName" Height="24" TextWrapping="Wrap" Text=""/>
             <Border Height="5" Background="Black"/>
             <Button x:Name="buttonAdd" Content="Добавить новую модель в базу данных" Click="buttonAdd_Click" />

@@ -1,5 +1,4 @@
 D:\Projects\GoogleDrive\Programming\C#\TestForIaUa\TestForIaUa\bin\Debug\TestForIaUa.exe.config
-D:\Projects\GoogleDrive\Programming\C#\TestForIaUa\TestForIaUa\obj\Debug\TestForIaUa.csprojResolveAssemblyReference.cache
 D:\Projects\GoogleDrive\Programming\C#\TestForIaUa\TestForIaUa\obj\Debug\MainWindow.g.cs
 D:\Projects\GoogleDrive\Programming\C#\TestForIaUa\TestForIaUa\obj\Debug\App.g.cs
 D:\Projects\GoogleDrive\Programming\C#\TestForIaUa\TestForIaUa\obj\Debug\TestForIaUa_MarkupCompile.cache
@@ -26,9 +25,8 @@ D:\Projects\GoogleDrive\Programming\C#\TestForIaUa\TestForIaUa\obj\Debug\AddEqui
 D:\Projects\GoogleDrive\Programming\C#\TestForIaUa\TestForIaUa\obj\Debug\AddEquipmentWindow.baml
 D:\Projects\GoogleDrive\Programming\C#\TestForIaUa\TestForIaUa\obj\Debug\AddRepairWindow.g.cs
 D:\Projects\GoogleDrive\Programming\C#\TestForIaUa\TestForIaUa\obj\Debug\AddRepairWindow.baml
-D:\Projects\GoogleDrive\Programming\C#\TestForIaUa\TestForIaUa\obj\Debug\FilterByTypeWindow.g.cs
-D:\Projects\GoogleDrive\Programming\C#\TestForIaUa\TestForIaUa\obj\Debug\FilterByTypeWindow.baml
-D:\Projects\GoogleDrive\Programming\C#\TestForIaUa\TestForIaUa\obj\Debug\FilterByManufacturerWindow.g.cs
-D:\Projects\GoogleDrive\Programming\C#\TestForIaUa\TestForIaUa\obj\Debug\FilterByManufacturerWindow.baml
 D:\Projects\GoogleDrive\Programming\C#\TestForIaUa\TestForIaUa\obj\Debug\EquipmentRedactorWindow.g.cs
 D:\Projects\GoogleDrive\Programming\C#\TestForIaUa\TestForIaUa\obj\Debug\EquipmentRedactorWindow.baml
+D:\Projects\GoogleDrive\Programming\C#\TestForIaUa\TestForIaUa\obj\Debug\ReportByDateWindow.g.cs
+D:\Projects\GoogleDrive\Programming\C#\TestForIaUa\TestForIaUa\bin\Debug\CsvHelper.dll
+D:\Projects\GoogleDrive\Programming\C#\TestForIaUa\TestForIaUa\obj\Debug\ReportByDateWindow.baml
