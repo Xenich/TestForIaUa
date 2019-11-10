@@ -30,3 +30,4 @@ D:\Projects\GoogleDrive\Programming\C#\TestForIaUa\TestForIaUa\obj\Debug\Equipme
 D:\Projects\GoogleDrive\Programming\C#\TestForIaUa\TestForIaUa\obj\Debug\ReportByDateWindow.g.cs
 D:\Projects\GoogleDrive\Programming\C#\TestForIaUa\TestForIaUa\bin\Debug\CsvHelper.dll
 D:\Projects\GoogleDrive\Programming\C#\TestForIaUa\TestForIaUa\obj\Debug\ReportByDateWindow.baml
+D:\Projects\GoogleDrive\Programming\C#\TestForIaUa\TestForIaUa\obj\Debug\TestForIaUa.csprojResolveAssemblyReference.cache
