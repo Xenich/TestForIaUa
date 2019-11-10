@@ -19,6 +19,7 @@ namespace TestForIaUa
     /// </summary>
     public partial class AddManufacturerToDBWindow : Window
     {
+        public event AddManufacturerDeleg addManufacturerEvent;         // событие - добавлен производитель
         public AddManufacturerToDBWindow()
         {
             InitializeComponent();
@@ -26,11 +27,18 @@ namespace TestForIaUa
 
         private void buttonAdd_Click(object sender, RoutedEventArgs e)
         {
+            if (textBoxName.Text == "")
+            {
+                MessageBox.Show("Введите наименование производителя!");
+                return;
+            }
             using (OfficeContext db = new OfficeContext())
             {
                 Manufacturer m = new Manufacturer() { Name = textBoxName.Text };
                 db.Manufacturers.Add(m);
                 db.SaveChanges();
+                if (addManufacturerEvent != null)
+                    addManufacturerEvent(m);
                 MessageBox.Show("Производитель добавлен");
             }
         }

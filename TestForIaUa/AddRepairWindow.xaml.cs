@@ -52,7 +52,8 @@ namespace TestForIaUa
             {
                 Repair repair = new Repair();
                 repair.Description = textBoxDescription.Text;
-                repair.DateTime = calendar.SelectedDate.Value;
+                DateTime dateTime = calendar.SelectedDate==null? DateTime.Now:calendar.SelectedDate.Value;             
+                repair.DateTime = dateTime;
                 Equipment eq = (Equipment)ComboBoxEquipment.SelectedValue;
                 db.Equipments.Attach(eq);
 

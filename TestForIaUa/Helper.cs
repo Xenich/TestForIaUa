@@ -24,5 +24,12 @@ namespace TestForIaUa
                 comboBox.ItemsSource = db.Manufacturers.ToArray();
             }
         }
+        public static void SetModelsToComboBox(ComboBox comboBox)
+        {
+            using (OfficeContext db = new OfficeContext())
+            {
+                comboBox.ItemsSource = db.Models.ToArray();
+            }
+        }
     }
 }

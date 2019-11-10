@@ -13,7 +13,7 @@ namespace TestForIaUa
         [MaxLength(300)]
         public string Description { get; set; }
             // внешний ключ
-        //public int ModelId { get; set; }
+        public int ModelId { get; set; }
         public  Model Model { get; set; }
     }
 
@@ -26,10 +26,10 @@ namespace TestForIaUa
         [Required]
         public string Name { get; set; }
         // внешний ключ
-        // public int ManufacturerId { get; set; }
+        public int ManufacturerId { get; set; }
         public Manufacturer Manufacturer { get; set; }
         // внешний ключ
-        //public int TypeId { get; set; }
+        public int TypeId { get; set; }
         public Type Type { get; set; }
 
        /* public override string ToString()
@@ -69,7 +69,7 @@ namespace TestForIaUa
         [MaxLength(30)]
         public string Description { get; set; }         // детали ремонта
             // внешний ключ
-       // public int EquipmentId { get; set; }
+        public int EquipmentId { get; set; }
         public Equipment Equipment { get; set; }
     }
 }

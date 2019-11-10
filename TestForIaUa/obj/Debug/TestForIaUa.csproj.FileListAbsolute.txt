@@ -30,3 +30,5 @@ D:\Projects\GoogleDrive\Programming\C#\TestForIaUa\TestForIaUa\obj\Debug\FilterB
 D:\Projects\GoogleDrive\Programming\C#\TestForIaUa\TestForIaUa\obj\Debug\FilterByTypeWindow.baml
 D:\Projects\GoogleDrive\Programming\C#\TestForIaUa\TestForIaUa\obj\Debug\FilterByManufacturerWindow.g.cs
 D:\Projects\GoogleDrive\Programming\C#\TestForIaUa\TestForIaUa\obj\Debug\FilterByManufacturerWindow.baml
+D:\Projects\GoogleDrive\Programming\C#\TestForIaUa\TestForIaUa\obj\Debug\EquipmentRedactorWindow.g.cs
+D:\Projects\GoogleDrive\Programming\C#\TestForIaUa\TestForIaUa\obj\Debug\EquipmentRedactorWindow.baml

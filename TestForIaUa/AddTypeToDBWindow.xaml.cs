@@ -19,6 +19,8 @@ namespace TestForIaUa
     /// </summary>
     public partial class AddTypeToDBWindow : Window
     {
+        public event AddTypeDeleg addTypeEvent;         // событие - добавлен производитель
+
         public AddTypeToDBWindow()
         {
             InitializeComponent();
@@ -33,10 +35,12 @@ namespace TestForIaUa
             }
             using (OfficeContext db = new OfficeContext())
             {
-                Type m = new Type() { Name = textBoxName.Text };
-                    db.Types.Add(m);
-                    db.SaveChanges();
-                    MessageBox.Show("Новый тип оборудования добавлен");
+                Type t = new Type() { Name = textBoxName.Text };
+                db.Types.Add(t);
+                db.SaveChanges();
+                if (addTypeEvent != null)
+                    addTypeEvent(t);
+                MessageBox.Show("Новый тип оборудования добавлен");
             }
         }
     }

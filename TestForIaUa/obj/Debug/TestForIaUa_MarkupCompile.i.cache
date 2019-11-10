@@ -10,11 +10,11 @@ none
 false
 DEBUG;TRACE
 D:\Projects\GoogleDrive\Programming\C#\TestForIaUa\TestForIaUa\App.xaml
-8-1125786079
+9-564258569
 
-20-1393808203
-16-1001410109
-AddEquipmentWindow.xaml;AddManufacturerToDBWindow.xaml;AddModelWindow.xaml;AddTypeToDBWindow.xaml;FilterByManufacturerWindow.xaml;FilterByTypeWindow.xaml;MainWindow.xaml;AddRepairWindow.xaml;
+21-1846787035
+17-1327816820
+AddEquipmentWindow.xaml;AddManufacturerToDBWindow.xaml;AddModelWindow.xaml;AddTypeToDBWindow.xaml;EquipmentRedactorWindow.xaml;FilterByManufacturerWindow.xaml;FilterByTypeWindow.xaml;MainWindow.xaml;AddRepairWindow.xaml;
 
-False
+True
 
