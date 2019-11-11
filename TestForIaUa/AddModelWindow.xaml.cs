@@ -14,16 +14,20 @@ using System.Windows.Shapes;
 
 namespace TestForIaUa
 {
-    /// <summary>
-    /// Interaction logic for AddModelWindow.xaml
-    /// </summary>
     public partial class AddModelWindow : Window
     {
+        AddManufacturerDeleg addManufacturerDeleg;
+        AddTypeDeleg addTypeDeleg;
         public AddModelWindow()
         {
             InitializeComponent();
+
             Helper.SetTypesToComboBox(ComboBoxType);
             Helper.SetManufacturersToComboBox(ComboBoxManuf);
+            addManufacturerDeleg = new AddManufacturerDeleg(Controller_addManufacturerEventHandler);
+            addTypeDeleg = new AddTypeDeleg(Controller_addTypeEventHandler);
+            Controller.addManufacturerEvent += addManufacturerDeleg;
+            Controller.addTypeEvent += Controller_addTypeEventHandler;
         }
 
         private void buttonAdd_Click(object sender, RoutedEventArgs e)
@@ -44,30 +48,33 @@ namespace TestForIaUa
                 MessageBox.Show("Введите название модели");
                 return;
             }
-
-            using (OfficeContext db = new OfficeContext())
-            {
-                Model m = new Model();
-                m.Name = textBoxName.Text;
-                //m.ManufacturerId = (int)(ComboBoxManuf.SelectedValue);        SelectedValuePath="Id"
-                //m.TypeId = (int)(ComboBoxType.SelectedValue);                 SelectedValuePath="Id"
-                Manufacturer manuf = (Manufacturer)ComboBoxManuf.SelectedValue;
-                Type typ = (Type)ComboBoxType.SelectedValue;
-                db.Manufacturers.Attach(manuf);
-                db.Types.Attach(typ);
-                m.Manufacturer = manuf;
-                m.Type = typ;
-                
-                db.Models.Add(m);
-                db.SaveChanges();
-                MessageBox.Show("Модель добавлена");
-            }
+            Controller.AddModel(textBoxName.Text, (Manufacturer)ComboBoxManuf.SelectedValue, (Type)ComboBoxType.SelectedValue);
+            MessageBox.Show("Модель добавлена");
         }
 
         private void ComboBoxManuf_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             
            // int id = (int)this.ComboBoxManuf.SelectedValue;          
+        }
+
+            // добавление производителя
+        private void buttonAddNewManuf_Click(object sender, RoutedEventArgs e)
+        {
+            (new AddManufacturerToDBWindow()).ShowDialog();
+        }
+        private void Controller_addManufacturerEventHandler(Manufacturer m)
+        {
+            Helper.SetManufacturersToComboBox(ComboBoxManuf);
+        }
+            // добавление типа
+        private void buttonAddNewType_Click(object sender, RoutedEventArgs e)
+        {
+            (new AddTypeToDBWindow()).ShowDialog();
+        }
+        private void Controller_addTypeEventHandler(Type t)
+        {
+            Helper.SetTypesToComboBox(ComboBoxType);
         }
     }
 }

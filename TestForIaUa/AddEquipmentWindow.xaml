@@ -8,7 +8,10 @@
         Title="Добавление оборудования" Height="300" Width="300">
     <Grid>
         <StackPanel  x:Name="mainStackPanel" >
+            <StackPanel  x:Name="secondStackPanel" Orientation="Horizontal" MinHeight="10" Height="auto" Width="auto" >
             <Label x:Name="labelModel" Content="Выберите модель"/>
+            <Button x:Name="buttonAddNewModel" Content="Добавить новую" Click="buttonAddNewModel_Click" />
+            </StackPanel>
             <ComboBox x:Name="ComboBoxModel"  DisplayMemberPath="Name" />
             <Border Height="5" Background="Black"/>
             <Label x:Name="label" Content="Введите описание оборудования"/>

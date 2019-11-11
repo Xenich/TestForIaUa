@@ -80,6 +80,7 @@
     <Compile Include="AddTypeToDBWindow.xaml.cs">
       <DependentUpon>AddTypeToDBWindow.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Controller.cs" />
     <Compile Include="Delegates.cs" />
     <Compile Include="entyties.cs" />
     <Compile Include="EquipmentRedactorWindow.xaml.cs">

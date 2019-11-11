@@ -10,10 +10,17 @@
         Title="Добавление модели"  MinHeight="10" Height="auto" Width="auto" d:DesignHeight="287" d:DesignWidth="296" >
     <Grid  MinHeight="10" Height="auto" Width="auto">
         <StackPanel  x:Name="mainStackPanel" MinHeight="10" Height="auto" Width="auto" >
-            <Label x:Name="labelManuf" Content="Выберите производителя" Height="25"/>
+            <StackPanel  x:Name="firstStackPanel" Orientation="Horizontal" MinHeight="10" Height="auto" Width="auto" >
+                <Label x:Name="labelManuf" Content="Выберите производителя" Height="25"/>
+                <Button x:Name="buttonAddNewManuf" Content="Создать нового" Click="buttonAddNewManuf_Click" />
+            </StackPanel>
             <ComboBox x:Name="ComboBoxManuf" DisplayMemberPath="Name"  SelectionChanged="ComboBoxManuf_SelectionChanged"/>
             <Border Height="5" Background="Black"/>
-            <Label x:Name="labelType" Content="Выберите тип оборудования"/>
+            <StackPanel  x:Name="secondStackPanel" Orientation="Horizontal" MinHeight="10" Height="auto" Width="auto" >
+                <Label x:Name="labelType" Content="Выберите тип оборудования"/>
+                <Button x:Name="buttonAddNewType" Content="Создать новое" Click="buttonAddNewType_Click" />
+            </StackPanel>
+
             <ComboBox x:Name="ComboBoxType"  DisplayMemberPath="Name" />
             <Border Height="5" Background="Black"/>
             <Label x:Name="label" Content="Введите название модели"/>

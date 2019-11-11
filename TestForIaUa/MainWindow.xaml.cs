@@ -16,19 +16,15 @@ using System.Data.Entity;
 
 namespace TestForIaUa
 {
-    /// <summary>
-    /// Interaction logic for MainWindow.xaml
-    /// </summary>
+
     public partial class MainWindow : Window
-    {
-        // ВСЁ ЭТО ВЫНЕСТИ В КОНТРОЛЛЕР       
+    {   
         Dictionary<int, DataGridClass> dic = new Dictionary<int, DataGridClass>();        // словарь: id - DataGridClass для отображения в датагриде
         AddEquipmentDeleg addEquipmentDeleg;
         AddManufacturerDeleg addManufacturerDeleg;
         AddTypeDeleg addTypeDeleg;
         EquipmentRedactedDeleg equipmentRedactedDeleg;
-        //FilterByTypeDeleg filterByTypeDeleg;
-        //FilterByManufacturerDeleg filterByManufacturerDeleg;
+
         public MainWindow()
         {
             InitializeComponent();
@@ -36,8 +32,12 @@ namespace TestForIaUa
             addManufacturerDeleg = new AddManufacturerDeleg(AM_addManufacturerEventHandler);
             addTypeDeleg = new AddTypeDeleg(AT_addTypeEventHandler);
             equipmentRedactedDeleg = new EquipmentRedactedDeleg(EquipmentRedactedEventHandler);
-            //filterByTypeDeleg = new FilterByTypeDeleg(FilterByType_FilterByTypeEvent);
-            //filterByManufacturerDeleg = new FilterByManufacturerDeleg(FilterByManufacturer_FilterByManufacturerEvent);
+
+            Controller.EquipmentAddedEvent += addEquipmentDeleg;
+            Controller.addManufacturerEvent += addManufacturerDeleg;
+            Controller.addTypeEvent += addTypeDeleg;
+            Controller.EquipmentRedactedEvent += equipmentRedactedDeleg;
+
             mainDataGrid.ItemsSource = dic.Values;
             FillMainDataGrid();
             Helper.SetTypesToComboBox(ComboBoxType);
@@ -67,10 +67,7 @@ namespace TestForIaUa
             // добавление нового оборудования
         private void buttonAdd_Click(object sender, RoutedEventArgs e)
         {
-            AddEquipmentWindow AddEquipment = new AddEquipmentWindow();
-            AddEquipment.EquipmentAddedEvent += addEquipmentDeleg;
-            AddEquipment.ShowDialog();
-            AddEquipment.EquipmentAddedEvent -= addEquipmentDeleg;
+            (new AddEquipmentWindow()).ShowDialog();
         }
             // обработчик события добавления нового оборудования
         private void AddEquipment_EquipmentAddedEvent(Equipment equip)
@@ -81,13 +78,10 @@ namespace TestForIaUa
             AdjustFilter();
         }
 
-            // добвление типа
+            // добавление типа
         private void buttonAddType_Click(object sender, RoutedEventArgs e)
         {
-            AddTypeToDBWindow AT = new AddTypeToDBWindow();
-            AT.addTypeEvent += addTypeDeleg;
-            AT.ShowDialog();
-            AT.addTypeEvent -= addTypeDeleg;
+            (new AddTypeToDBWindow()).ShowDialog();
         }
         private void AT_addTypeEventHandler(Type t)
         {
@@ -97,10 +91,7 @@ namespace TestForIaUa
             // добавление производителя
         private void buttonAddManufacturer_Click(object sender, RoutedEventArgs e)
         {
-            AddManufacturerToDBWindow AM = new AddManufacturerToDBWindow();
-            AM.addManufacturerEvent += addManufacturerDeleg;
-            AM.ShowDialog();
-            AM.addManufacturerEvent -= addManufacturerDeleg;
+            (new AddManufacturerToDBWindow()).ShowDialog();
         }
         private void AM_addManufacturerEventHandler(Manufacturer m)
         {
@@ -198,20 +189,13 @@ namespace TestForIaUa
             ComboBoxManuf.SelectedIndex = -1;
             ComboBoxType.SelectedIndex = -1;
         }
+
             // даблклик по гриду - вызывает карточку оборудования
         private void mainDataGrid_MouseDoubleClick(object sender, MouseButtonEventArgs e)
         {
             object item = mainDataGrid.SelectedItem;
             int id = ((DataGridClass)item).id;
-            Equipment eq;
-            using (OfficeContext db = new OfficeContext())
-            {
-                eq = db.Equipments.Find(id);
-                EquipmentRedactorWindow ERW = new EquipmentRedactorWindow(id);
-                ERW.EquipmentRedactedEvent += equipmentRedactedDeleg;
-                ERW.ShowDialog();
-                ERW.EquipmentRedactedEvent -= equipmentRedactedDeleg;
-            }
+            (new EquipmentRedactorWindow(id)).ShowDialog();
         }
             // событие редактирования оборудования (после даблклика)- обновляем грид
         private void EquipmentRedactedEventHandler()
@@ -219,8 +203,7 @@ namespace TestForIaUa
             FillMainDataGrid();
         }
     }
-
-    // класс - источник для датагрида
+        // класс - источник для датагрида
     public class DataGridClass
     {
         public DataGridClass()
@@ -240,66 +223,3 @@ namespace TestForIaUa
         public string Description { get; set; }
     }
 }
-
-
-
-
-/* СВАЛКА
-         // фильтр по типу
-        private void filterTypeButton_Click(object sender, RoutedEventArgs e)
-        {
-            FilterByTypeWindow FBTW = new FilterByTypeWindow();
-            FBTW.FilterByTypeEvent += filterByTypeDeleg;
-            FBTW.ShowDialog();
-        }
-                // Обработчик события выбора типа для фильтра
-        private void FilterByType_FilterByTypeEvent(Type type)
-        {
-            int typeid = type.Id;
-            using (OfficeContext db = new OfficeContext())
-            {
-                string query = "Select Equipments.Id, mm.ModelName, mm.TypeName, mm.ManName, Equipments.Description FROM Equipments INNER JOIN " +
-                                "(Select Models.Id as [ModelID], Models.Name as [ModelName], Manufacturers.Id as [ManID], Manufacturers.Name as [ManName], Types.Id as [TypeID], Types.Name as [TypeName] " +
-                                "FROM Models, Manufacturers, Types " +
-                                "WHERE Models.ManufacturerId = Manufacturers.Id AND Models.TypeId = Types.Id AND Types.Id="+ typeid+") as [mm] " +
-                                "ON Equipments.ModelId = mm.ModelID";
-
-                List<DataGridClass> sourceForDataGrid = db.Database.SqlQuery<DataGridClass>(query).ToList<DataGridClass>();      //        // источник данных для датагрида
-                dic.Clear();
-                foreach (DataGridClass dgc in sourceForDataGrid)
-                {
-                    dic.Add(dgc.id, dgc);
-                }
-                mainDataGrid.Items.Refresh();
-            }
-        }
-
-        private void filterManufacturerButton_Click(object sender, RoutedEventArgs e)
-        {
-            FilterByManufacturerWindow FBMW = new FilterByManufacturerWindow();
-            FBMW.FilterByManufacturerEvent += FilterByManufacturer_FilterByManufacturerEvent;
-            FBMW.ShowDialog();
-        }
-
-        private void FilterByManufacturer_FilterByManufacturerEvent(Manufacturer manufacturer)
-        {
-            int manufacturerid = manufacturer.Id;
-            using (OfficeContext db = new OfficeContext())
-            {
-                string query = "Select Equipments.Id, mm.ModelName, mm.TypeName, mm.ManName, Equipments.Description FROM Equipments INNER JOIN " +
-                                "(Select Models.Id as [ModelID], Models.Name as [ModelName], Manufacturers.Id as [ManID], Manufacturers.Name as [ManName], Types.Id as [TypeID], Types.Name as [TypeName] " +
-                                "FROM Models, Manufacturers, Types " +
-                                "WHERE Models.ManufacturerId = Manufacturers.Id AND Models.TypeId = Types.Id AND Manufacturers.Id=" + manufacturerid + ") as [mm] " +
-                                "ON Equipments.ModelId = mm.ModelID";
-
-                List<DataGridClass> sourceForDataGrid = db.Database.SqlQuery<DataGridClass>(query).ToList<DataGridClass>();      //        // источник данных для датагрида
-                dic.Clear();
-                foreach (DataGridClass dgc in sourceForDataGrid)
-                {
-                    dic.Add(dgc.id, dgc);
-                }
-                mainDataGrid.Items.Refresh();
-            }
-        }
- 
- * */

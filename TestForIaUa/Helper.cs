@@ -24,12 +24,27 @@ namespace TestForIaUa
                 comboBox.ItemsSource = db.Manufacturers.ToArray();
             }
         }
-        public static void SetModelsToComboBox(ComboBox comboBox)
+        public static void SetModelsToComboBox(ComboBox ComboBoxModel)
         {
+                // заполняем комбобокс с моделями
+            Dictionary<Model, string> comboSource;
             using (OfficeContext db = new OfficeContext())
             {
-                comboBox.ItemsSource = db.Models.ToArray();
+                Model[] models = db.Models
+                    .Include("Type")
+                    .Include("Manufacturer")
+                    .ToArray();
+                //string[] comboItemSource = new string[models.Length];
+                comboSource = new Dictionary<Model, string>();
+                for (int i = 0; i < models.Length; i++)
+                {
+                    comboSource.Add(models[i], "Тип: " + models[i].Type.Name + ", производитель: " + models[i].Manufacturer.Name + " - " + models[i].Name);
+                }
+                ComboBoxModel.ItemsSource = comboSource;
+                ComboBoxModel.DisplayMemberPath = "Value";
+                ComboBoxModel.SelectedValuePath = "Key";
             }
+            ComboBoxModel.ItemsSource = comboSource;
         }
     }
 }

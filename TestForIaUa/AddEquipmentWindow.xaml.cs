@@ -14,35 +14,15 @@ using System.Windows.Shapes;
 
 namespace TestForIaUa
 {
-
-    /// <summary>
-    /// Interaction logic for AddEquipmentWindow.xaml
-    /// </summary>
     public partial class AddEquipmentWindow : Window
     {
-        public event AddEquipmentDeleg EquipmentAddedEvent;         // событие - добавление нового оборудования
+        AddModelDeleg addModelDeleg;
         public AddEquipmentWindow()
         {
             InitializeComponent();
-                // заполняем комбобокс с моделями
-            Dictionary<Model, string> comboSource;
-            using (OfficeContext db = new OfficeContext())
-            {
-                Model[] models = db.Models
-                    .Include("Type")
-                    .Include("Manufacturer")
-                    .ToArray();
-                //string[] comboItemSource = new string[models.Length];
-                comboSource = new Dictionary<Model, string>();
-                for (int i = 0; i < models.Length; i++)
-                {
-                    comboSource.Add(models[i], "Тип: " + models[i].Type.Name + ", производитель: " + models[i].Manufacturer.Name + " - " + models[i].Name);
-                }
-                ComboBoxModel.ItemsSource = comboSource;
-                ComboBoxModel.DisplayMemberPath = "Value";
-                ComboBoxModel.SelectedValuePath = "Key";
-            }
-            ComboBoxModel.ItemsSource = comboSource;
+            addModelDeleg = new AddModelDeleg(Controller_addModelEventHandler);
+            Controller.addModelEvent += addModelDeleg;
+            Helper.SetModelsToComboBox(ComboBoxModel);
         }
 
         private void buttonAdd_Click(object sender, RoutedEventArgs e)
@@ -52,20 +32,17 @@ namespace TestForIaUa
                 MessageBox.Show("Выберите модель из списка");
                 return;
             }
-            using (OfficeContext db = new OfficeContext())
-            {
-                Equipment equipment = new Equipment();
-                equipment.Description = textBoxDescription.Text;
-                Model model = (Model)ComboBoxModel.SelectedValue;
-               
-                db.Models.Attach(model);
-                equipment.Model = model;
-                Equipment equip = db.Equipments.Add(equipment);
-                db.SaveChanges();
-                MessageBox.Show("Оборудование добавлено");
-                if(EquipmentAddedEvent!=null)
-                    EquipmentAddedEvent(equip);
-            }
+            Controller.AddEquipment(textBoxDescription.Text, (Model)ComboBoxModel.SelectedValue);
+            MessageBox.Show("Оборудование добавлено");
+        }
+            // добавить новую модель
+        private void buttonAddNewModel_Click(object sender, RoutedEventArgs e)
+        {
+            (new AddModelWindow()).ShowDialog();
+        }
+        private void Controller_addModelEventHandler(Model m)
+        {
+            Helper.SetModelsToComboBox(ComboBoxModel);
         }
     }
 }
