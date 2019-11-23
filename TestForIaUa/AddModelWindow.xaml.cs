@@ -16,18 +16,19 @@ namespace TestForIaUa
 {
     public partial class AddModelWindow : Window
     {
+        Controller controller;
         AddManufacturerDeleg addManufacturerDeleg;
         AddTypeDeleg addTypeDeleg;
-        public AddModelWindow()
+        public AddModelWindow(Controller controller)
         {
             InitializeComponent();
-
+            this.controller = controller;
             Helper.SetTypesToComboBox(ComboBoxType);
             Helper.SetManufacturersToComboBox(ComboBoxManuf);
             addManufacturerDeleg = new AddManufacturerDeleg(Controller_addManufacturerEventHandler);
             addTypeDeleg = new AddTypeDeleg(Controller_addTypeEventHandler);
-            Controller.addManufacturerEvent += addManufacturerDeleg;
-            Controller.addTypeEvent += Controller_addTypeEventHandler;
+            controller.addManufacturerEvent += addManufacturerDeleg;
+            controller.addTypeEvent += Controller_addTypeEventHandler;
         }
 
         private void buttonAdd_Click(object sender, RoutedEventArgs e)
@@ -48,7 +49,7 @@ namespace TestForIaUa
                 MessageBox.Show("Введите название модели");
                 return;
             }
-            Controller.AddModel(textBoxName.Text, (Manufacturer)ComboBoxManuf.SelectedValue, (Type)ComboBoxType.SelectedValue);
+            controller.AddModel(textBoxName.Text, (Manufacturer)ComboBoxManuf.SelectedValue, (Type)ComboBoxType.SelectedValue);
             MessageBox.Show("Модель добавлена");
         }
 
@@ -61,18 +62,18 @@ namespace TestForIaUa
             // добавление производителя
         private void buttonAddNewManuf_Click(object sender, RoutedEventArgs e)
         {
-            (new AddManufacturerToDBWindow()).ShowDialog();
+            (new AddManufacturerToDBWindow(controller)).ShowDialog();
         }
-        private void Controller_addManufacturerEventHandler(Manufacturer m)
+        private void Controller_addManufacturerEventHandler()
         {
             Helper.SetManufacturersToComboBox(ComboBoxManuf);
         }
             // добавление типа
         private void buttonAddNewType_Click(object sender, RoutedEventArgs e)
         {
-            (new AddTypeToDBWindow()).ShowDialog();
+            (new AddTypeToDBWindow(controller)).ShowDialog();
         }
-        private void Controller_addTypeEventHandler(Type t)
+        private void Controller_addTypeEventHandler()
         {
             Helper.SetTypesToComboBox(ComboBoxType);
         }

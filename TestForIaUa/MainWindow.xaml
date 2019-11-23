@@ -65,6 +65,11 @@
                         <TextBlock Text="Сформировать отчёт по поломкам" TextWrapping="Wrap" TextAlignment="Center" FontSize="14" FontWeight="Normal" />
                     </Button.Content>
                 </Button>
+                <Button Height="Auto" Name="buttonTest" Width="auto" Margin="1" Padding="4" Click="buttonTest_Click" Foreground="Black" BorderBrush="Black" Background="#0A000000">
+                    <Button.Content>
+                        <TextBlock Text="Заполнить БД тестовыми значениями" TextWrapping="Wrap" TextAlignment="Center" FontSize="14" FontWeight="Normal" />
+                    </Button.Content>
+                </Button>
             </StackPanel>
 
             <Grid Name="rightGrid"  Grid.Column="1" Height="auto" >

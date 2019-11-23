@@ -19,11 +19,12 @@ namespace TestForIaUa
     /// </summary>
     public partial class EquipmentRedactorWindow : Window
     {
-        //Equipment equipment;
+        Controller controller;
         int id;
-        public EquipmentRedactorWindow(int id)
+        public EquipmentRedactorWindow(int id, Controller controller)
         {
             InitializeComponent();
+            this.controller = controller;
             this.id = id;
             Helper.SetModelsToComboBox(ComboBoxModel);
             using (OfficeContext db = new OfficeContext())
@@ -42,9 +43,9 @@ namespace TestForIaUa
         private void buttonAdd_Click(object sender, RoutedEventArgs e)
         {
             if (ComboBoxModel.SelectedIndex != -1)
-                Controller.RedactEquipment(id, textBoxDescription.Text, (Model)ComboBoxModel.SelectedValue);
+                controller.RedactEquipment(id, textBoxDescription.Text, (Model)ComboBoxModel.SelectedValue);
             else
-                Controller.RedactEquipment(id, textBoxDescription.Text, null);
+                controller.RedactEquipment(id, textBoxDescription.Text, null);
         }
     }
 }

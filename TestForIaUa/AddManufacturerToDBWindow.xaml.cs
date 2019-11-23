@@ -16,9 +16,11 @@ namespace TestForIaUa
 {
     public partial class AddManufacturerToDBWindow : Window
     {
-        public AddManufacturerToDBWindow()
+        Controller controller;
+        public AddManufacturerToDBWindow(Controller controller)
         {
             InitializeComponent();
+            this.controller = controller;
         }
 
         private void buttonAdd_Click(object sender, RoutedEventArgs e)
@@ -28,7 +30,7 @@ namespace TestForIaUa
                 MessageBox.Show("Введите наименование производителя!");
                 return;
             }
-            Controller.AddManufacturer(textBoxName.Text);
+            controller.AddManufacturer(textBoxName.Text);
         }
     }
 }

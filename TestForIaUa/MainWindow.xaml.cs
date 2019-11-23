@@ -24,19 +24,21 @@ namespace TestForIaUa
         AddManufacturerDeleg addManufacturerDeleg;
         AddTypeDeleg addTypeDeleg;
         EquipmentRedactedDeleg equipmentRedactedDeleg;
+        Controller controller;
 
         public MainWindow()
         {
             InitializeComponent();
+            controller = Controller.GetInstance();
             addEquipmentDeleg = new AddEquipmentDeleg(AddEquipment_EquipmentAddedEvent);
             addManufacturerDeleg = new AddManufacturerDeleg(AM_addManufacturerEventHandler);
             addTypeDeleg = new AddTypeDeleg(AT_addTypeEventHandler);
             equipmentRedactedDeleg = new EquipmentRedactedDeleg(EquipmentRedactedEventHandler);
 
-            Controller.EquipmentAddedEvent += addEquipmentDeleg;
-            Controller.addManufacturerEvent += addManufacturerDeleg;
-            Controller.addTypeEvent += addTypeDeleg;
-            Controller.EquipmentRedactedEvent += equipmentRedactedDeleg;
+            controller.EquipmentAddedEvent += addEquipmentDeleg;
+            controller.addManufacturerEvent += addManufacturerDeleg;
+            controller.addTypeEvent += addTypeDeleg;
+            controller.EquipmentRedactedEvent += equipmentRedactedDeleg;
 
             mainDataGrid.ItemsSource = dic.Values;
             FillMainDataGrid();
@@ -67,7 +69,7 @@ namespace TestForIaUa
             // добавление нового оборудования
         private void buttonAdd_Click(object sender, RoutedEventArgs e)
         {
-            (new AddEquipmentWindow()).ShowDialog();
+            (new AddEquipmentWindow(controller)).ShowDialog();
         }
             // обработчик события добавления нового оборудования
         private void AddEquipment_EquipmentAddedEvent(Equipment equip)
@@ -81,9 +83,9 @@ namespace TestForIaUa
             // добавление типа
         private void buttonAddType_Click(object sender, RoutedEventArgs e)
         {
-            (new AddTypeToDBWindow()).ShowDialog();
+            (new AddTypeToDBWindow(controller)).ShowDialog();
         }
-        private void AT_addTypeEventHandler(Type t)
+        private void AT_addTypeEventHandler()
         {
             Helper.SetTypesToComboBox(ComboBoxType);
         }
@@ -91,9 +93,9 @@ namespace TestForIaUa
             // добавление производителя
         private void buttonAddManufacturer_Click(object sender, RoutedEventArgs e)
         {
-            (new AddManufacturerToDBWindow()).ShowDialog();
+            (new AddManufacturerToDBWindow(controller)).ShowDialog();
         }
-        private void AM_addManufacturerEventHandler(Manufacturer m)
+        private void AM_addManufacturerEventHandler()
         {
             Helper.SetManufacturersToComboBox(ComboBoxManuf);
         }
@@ -101,7 +103,7 @@ namespace TestForIaUa
             // добавление новой модели
         private void buttonAddModel_Click(object sender, RoutedEventArgs e)
         {
-            (new AddModelWindow()).ShowDialog();
+            (new AddModelWindow(controller)).ShowDialog();
         }
             // добавление ремонта
         private void buttonRepair_Click(object sender, RoutedEventArgs e)
@@ -195,15 +197,20 @@ namespace TestForIaUa
         {
             object item = mainDataGrid.SelectedItem;
             int id = ((DataGridClass)item).id;
-            (new EquipmentRedactorWindow(id)).ShowDialog();
+            (new EquipmentRedactorWindow(id, controller)).ShowDialog();
         }
             // событие редактирования оборудования (после даблклика)- обновляем грид
         private void EquipmentRedactedEventHandler()
         {
             FillMainDataGrid();
         }
+            // заполнение БД тестовыми значениями
+        private void buttonTest_Click(object sender, RoutedEventArgs e)
+        {
+            controller.TestFillDB();
+        }
     }
-        // класс - источник для датагрида
+    // класс - источник для датагрида
     public class DataGridClass
     {
         public DataGridClass()

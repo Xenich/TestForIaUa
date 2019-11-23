@@ -16,12 +16,14 @@ namespace TestForIaUa
 {
     public partial class AddEquipmentWindow : Window
     {
+        Controller controller;
         AddModelDeleg addModelDeleg;
-        public AddEquipmentWindow()
+        public AddEquipmentWindow(Controller controller)
         {
             InitializeComponent();
+            this.controller = controller;
             addModelDeleg = new AddModelDeleg(Controller_addModelEventHandler);
-            Controller.addModelEvent += addModelDeleg;
+            controller.addModelEvent += addModelDeleg;
             Helper.SetModelsToComboBox(ComboBoxModel);
         }
 
@@ -32,15 +34,15 @@ namespace TestForIaUa
                 MessageBox.Show("Выберите модель из списка");
                 return;
             }
-            Controller.AddEquipment(textBoxDescription.Text, (Model)ComboBoxModel.SelectedValue);
+            controller.AddEquipment(textBoxDescription.Text, (Model)ComboBoxModel.SelectedValue);
             MessageBox.Show("Оборудование добавлено");
         }
             // добавить новую модель
         private void buttonAddNewModel_Click(object sender, RoutedEventArgs e)
         {
-            (new AddModelWindow()).ShowDialog();
+            (new AddModelWindow(controller)).ShowDialog();
         }
-        private void Controller_addModelEventHandler(Model m)
+        private void Controller_addModelEventHandler()
         {
             Helper.SetModelsToComboBox(ComboBoxModel);
         }

@@ -20,10 +20,11 @@ namespace TestForIaUa
     public partial class AddTypeToDBWindow : Window
     {
 
-
-        public AddTypeToDBWindow()
+        Controller controller;
+        public AddTypeToDBWindow(Controller controller)
         {
             InitializeComponent();
+            this.controller = controller;
         }
 
         private void buttonAdd_Click(object sender, RoutedEventArgs e)
@@ -33,7 +34,7 @@ namespace TestForIaUa
                 MessageBox.Show("Введите наименование типа оборудования");
                 return;
             }
-            Controller.AddType(textBoxName.Text);
+            controller.AddType(textBoxName.Text);
         }
     }
 }
